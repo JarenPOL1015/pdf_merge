@@ -1,6 +1,4 @@
-PDF Editor
-
----
+# PDF Editor - By: Jaren Pazmino
 
 ## 🚀 Cómo usarlo
 
