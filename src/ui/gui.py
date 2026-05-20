@@ -85,7 +85,16 @@ class PDFEditorApp(tk.Tk):
 
     def _build_ui(self):
         
-        topbar = render_topbar(self)
+        topbar = tk.Frame(self, height=56, bg=styles.BG_PANEL)
+        topbar.pack(fill="x", side="top")
+        topbar.pack_propagate(False)
+        tk.Label(topbar,  
+            text="📄 PDF Editor Local",
+            font=(styles.MAIN_FONT, 16, "bold"),
+            bg=styles.BG_PANEL,
+            fg=styles.TEXT_WHITE).pack(side="left", padx=18, pady=10)
+        
+        tk.Label(topbar, text="🔒 Sin conexión · 100% privado", **styles.DEFAULT_LABEL_STYLE).pack(side="left", padx=6)
         btn_f = tk.Frame(topbar, bg=styles.BG_PANEL)
         btn_f.pack(side="right", padx=12)
         self._topbtn(btn_f, "📂 Abrir PDF",    self.open_pdf,   styles.ACCENT)
