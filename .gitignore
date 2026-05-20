@@ -1,0 +1,9 @@
+# Entorno virtual
+.venv/
+venv/
+ENV/
+
+# Archivos de PyInstaller (compilación)
+build/
+dist/
+*.exe
