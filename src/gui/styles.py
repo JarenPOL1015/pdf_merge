@@ -1,7 +1,7 @@
-# ─────────────────────────────────────────────
-#  COLORS
-# ─────────────────────────────────────────────
-
+##CONSTANTS
+APP_TITLE = "PDF Editor Local  🔒  100% Privado"
+DEFAULT_GEOMETRY = "1400x820"
+##COLORS
 BG_DARK    = "#1a1a2e"
 BG_CARD    = "#16213e"
 BG_PANEL   = "#0f3460"
