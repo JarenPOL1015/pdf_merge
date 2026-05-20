@@ -54,9 +54,9 @@ El archivo original **nunca se modifica** — siempre guardas una copia nueva.
 * **pypdf:** Para la manipulación binaria, reordenamiento y guardado de los documentos.
 * **Pillow:** Para el procesamiento eficiente de imágenes y miniaturas.
 
-## Authors 👥
+## Autor 👥
 
 - Jaren Pazmiño
 
-Miembro del Club de Inteligencia Artificial Politécnico CIAP
+    Miembro del Club de Inteligencia Artificial Politécnico CIAP
 <img alt="Logo_CIAP" src="img/ciap.png" />
