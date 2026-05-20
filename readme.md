@@ -22,7 +22,7 @@ python pdf_editor.py
 Si quieres generar el archivo independiente para Windows 11 (el que no abre la consola negra y empaqueta todo en un solo archivo), ejecuta este comando en tu terminal:
 
 ```bash
-pyinstaller --clean --onefile --windowed --name "PDF Editor Local" --collect-all pymupdf --hidden-import=fitz --hidden-import=PIL --hidden-import=pypdf pdf_editor.py
+pyinstaller --clean --onefile --windowed --name "PDF Editor Local" --collect-all pymupdf --hidden-import=fitz --hidden-import=PIL --hidden-import=pypdf src/main.py
 ```
 
 El ejecutable final aparecerá en la carpeta **dist/.**
