@@ -7,62 +7,18 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, simpledialog
 import threading
 from pathlib import Path
-
-# ── Dependencias obligatorias ──────────────────────────────────────────────
-missing = []
-try:
-    from pypdf import PdfReader, PdfWriter
-except ImportError:
-    missing.append("pypdf")
-
-try:
-    from PIL import Image, ImageTk, ImageDraw
-except ImportError:
-    missing.append("pillow")
-
-try:
-    import fitz  # PyMuPDF
-    HAS_FITZ = True
-except ImportError:
-    HAS_FITZ = False
-
-if missing:
-    import sys, tkinter as _tk, tkinter.messagebox as _mb
-    _r = _tk.Tk(); _r.withdraw()
-    _mb.showerror("Dependencias faltantes",
-                  f"Instala con:\n  pip install {' '.join(missing)}")
-    sys.exit(1)
-
-if not HAS_FITZ:
-    import tkinter as _tk, tkinter.messagebox as _mb
-    _r = _tk.Tk(); _r.withdraw()
-    _mb.showerror("PyMuPDF no encontrado",
-                  "Instala con:\n  pip install pymupdf\n\n"
-                  "PyMuPDF renderiza PDFs sin necesitar poppler.")
-    import sys; sys.exit(1)
-
-
-# ─────────────────────────────────────────────
-#  COLORES
-# ─────────────────────────────────────────────
-BG_DARK    = "#1a1a2e"
-BG_CARD    = "#16213e"
-BG_PANEL   = "#0f3460"
-ACCENT     = "#e94560"
-TEXT_WHITE = "#eaeaea"
-TEXT_GRAY  = "#a0aec0"
-GREEN      = "#48bb78"
-YELLOW     = "#ecc94b"
-THUMB_BG   = "#1e2a45"
-THUMB_SEL  = "#e94560"
-BORDER     = "#2d3748"
-PREVIEW_BG = "#12192b"
+from src.gui import styles
+from pypdf import PdfReader, PdfWriter
+from PIL import Image, ImageTk, ImageDraw
+import fitz
+import tkinter as _tk, tkinter.messagebox as _mb
 
 
 # ─────────────────────────────────────────────
 #  RENDERIZADO CON PyMuPDF
 # ─────────────────────────────────────────────
 # Cache de documentos abiertos para no reabrir en cada render
+
 _fitz_cache: dict[str, fitz.Document] = {}
 
 def _get_fitz_doc(path: str) -> fitz.Document:
