@@ -27,6 +27,12 @@ Si quieres generar el archivo independiente para Windows 11 (el que no abre la c
 pyinstaller --clean --onefile --windowed --name "PDF Editor Local" --collect-all pymupdf --hidden-import=fitz --hidden-import=PIL --hidden-import=pypdf pdf_editor.py
 ```
 
+(VERSION CON GUI 2)
+```bash
+pyinstaller --clean --onefile --windowed --name "PDFEditor" --collect-all pymupdf --hidden-import=fitz --hidden-import=PIL --hidden-import=pypdf --add-data "img;img" --icon=img/logo.ico .\src\main2.py
+```
+
+
 El ejecutable final aparecerá en la carpeta **dist/.**
 
 

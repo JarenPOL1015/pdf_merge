@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 
-datas = []
+datas = [('img', 'img')]
 binaries = []
 hiddenimports = ['fitz', 'PIL', 'pypdf']
 tmp_ret = collect_all('pymupdf')
@@ -9,7 +9,7 @@ datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 
 a = Analysis(
-    ['src\\main.py'],
+    ['src\\main2.py'],
     pathex=[],
     binaries=binaries,
     datas=datas,
@@ -29,7 +29,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='PDF Editor Local',
+    name='PDFEditor',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -42,4 +42,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=['img\\logo.ico'],
 )

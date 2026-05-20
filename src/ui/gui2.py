@@ -14,7 +14,16 @@ from ui.components.gui2_grid import ThumbnailGrid
 from ui.components.gui2_preview import PreviewPanel
 from ui.components.gui2_sidebar import SidebarPanel
 from ui.components.gui2_topbar import render_gui2_topbar
+import os
+import sys
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 class PDFEditorBootstrapApp(ttk.Window):
     def __init__(self) -> None:
@@ -28,6 +37,7 @@ class PDFEditorBootstrapApp(ttk.Window):
         self.preview_index: int | None = None
         self.preview_cancel = threading.Event()
         ttk.Style("cyborg")
+        self.iconbitmap(resource_path("img/logo.ico"))
         self.protocol("WM_DELETE_WINDOW", self._on_close)
         self._build_ui()
         self._bind_keys()
