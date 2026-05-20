@@ -4,14 +4,8 @@
 
 **1. Instalar dependencias** (solo la primera vez):
 ```bash
-pip install pypdf pillow pdf2image
+pip install pypdf pillow pymupdf
 ```
-
-> En Linux también necesitas poppler:
-> ```bash
-> sudo apt install poppler-utils   # Ubuntu/Debian
-> brew install poppler             # macOS
-> ```
 
 **2. Ejecutar:**
 ```bash
