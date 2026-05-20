@@ -5,8 +5,6 @@ Un editor de PDF rápido, moderno y diseñado con un enfoque absoluto en la **pr
 ## 🔒 Privacidad Garantizada
 A diferencia de las herramientas web online, esta aplicación procesa todo de forma **100% local en tu memoria RAM**. Tus archivos nunca tocan internet, eliminando cualquier riesgo de filtración.
 
-
-
 ## 🚀 Cómo usarlo
 
 **1. Clonar el repositorio e instalar dependencias** (solo la primera vez):
@@ -26,12 +24,6 @@ Si quieres generar el archivo independiente para Windows 11 (el que no abre la c
 ```bash
 pyinstaller --clean --onefile --windowed --name "PDF Editor Local" --collect-all pymupdf --hidden-import=fitz --hidden-import=PIL --hidden-import=pypdf pdf_editor.py
 ```
-
-(VERSION CON GUI 2)
-```bash
-pyinstaller --clean --onefile --windowed --name "PDFEditor" --collect-all pymupdf --hidden-import=fitz --hidden-import=PIL --hidden-import=pypdf --add-data "img;img" --icon=img/logo.ico .\src\main2.py
-```
-
 
 El ejecutable final aparecerá en la carpeta **dist/.**
 
@@ -64,7 +56,10 @@ El archivo original **nunca se modifica** — siempre guardas una copia nueva.
 
 - Jaren Pazmiño
 
-    Miembro del Club de Inteligencia Artificial Politécnico CIAP
+### Contribuciones
+- Andrés Porras
+
+Miembros del Club de Inteligencia Artificial Politécnico CIAP
 <img alt="Logo_CIAP" src="img/ciap.png" />
 
 
