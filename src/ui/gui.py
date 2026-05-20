@@ -3,13 +3,13 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, simpledialog
 import threading
 from pathlib import Path
-from gui import styles
+from ui import styles
 from pypdf import PdfReader, PdfWriter
 from PIL import Image, ImageTk
 import fitz
 import tkinter as _tk, tkinter.messagebox as _mb
 
-from src.gui import styles
+from ui.components.topbar import render_topbar
 
 _fitz_cache: dict[str, fitz.Document] = {}
 
@@ -32,7 +32,7 @@ def render_page(pdf_path: str, page_index: int, dpi: int = 96) -> Image.Image | 
         print(f"[render_page] Error en pág {page_index}: {ex}")
         return None
 
-def render_thumb(pdf_path: str, page_index: int) -> Image.Image | None:
+def render_thumbnail(pdf_path: str, page_index: int) -> Image.Image | None:
     """Miniatura de baja resolución para el grid."""
     return render_page(pdf_path, page_index, dpi=36)
 
@@ -82,15 +82,10 @@ class PDFEditorApp(tk.Tk):
     # ──────────────────────────────────────────
     #  UI
     # ──────────────────────────────────────────
+
     def _build_ui(self):
-        # Topbar
-        topbar = tk.Frame(self, bg=styles.BG_PANEL, height=56)
-        topbar.pack(fill="x", side="top")
-        topbar.pack_propagate(False)
-        tk.Label(topbar, text="📄 PDF Editor Local", font=("Segoe UI", 16, "bold"),
-                 bg=styles.BG_PANEL, fg=styles.TEXT_WHITE).pack(side="left", padx=18, pady=10)
-        tk.Label(topbar, text="🔒 Sin conexión · 100% privado",
-                 font=("Segoe UI", 9), bg=styles.BG_PANEL, fg=styles.GREEN).pack(side="left", padx=6)
+        
+        topbar = render_topbar(self)
         btn_f = tk.Frame(topbar, bg=styles.BG_PANEL)
         btn_f.pack(side="right", padx=12)
         self._topbtn(btn_f, "📂 Abrir PDF",    self.open_pdf,   styles.ACCENT)
@@ -197,7 +192,7 @@ class PDFEditorApp(tk.Tk):
         cf = tk.Frame(p, bg=styles.PREVIEW_BG)
         cf.pack(fill="both", expand=True, padx=4, pady=4)
         self.pv_canvas = tk.Canvas(cf, bg=styles.PREVIEW_BG, highlightthickness=0)
-        sb = ttk.Scrollbar(cf, orient="vertical", command=self.pv_canvas.yview)
+        sb = tk.Scrollbar(cf, orient="vertical", command=self.pv_canvas.yview)
         self.pv_canvas.configure(yscrollcommand=sb.set)
         sb.pack(side="right", fill="y")
         self.pv_canvas.pack(fill="both", expand=True)
@@ -242,14 +237,14 @@ class PDFEditorApp(tk.Tk):
         tk.Label(tb, text="Zoom:", font=("Segoe UI", 8),
                  bg=styles.BG_CARD, fg=styles.TEXT_GRAY).pack(side="right", padx=(0,4))
         self.zoom_var = tk.IntVar(value=130)
-        ttk.Scale(tb, from_=60, to=220, variable=self.zoom_var, orient="horizontal",
+        tk.Scale(tb, from_=60, to=220, variable=self.zoom_var, orient="horizontal",
                   length=100, command=lambda _: self._refresh_grid()).pack(side="right", padx=(0,12))
 
         cf = tk.Frame(p, bg=styles.BG_DARK)
         cf.pack(fill="both", expand=True, pady=(6,0))
         self.canvas = tk.Canvas(cf, bg=styles.BG_DARK, highlightthickness=0)
-        sy = ttk.Scrollbar(cf, orient="vertical",   command=self.canvas.yview)
-        sx = ttk.Scrollbar(cf, orient="horizontal", command=self.canvas.xview)
+        sy = tk.Scrollbar(cf, orient="vertical",   command=self.canvas.yview)
+        sx = tk.Scrollbar(cf, orient="horizontal", command=self.canvas.xview)
         self.canvas.configure(yscrollcommand=sy.set, xscrollcommand=sx.set)
         sy.pack(side="right", fill="y")
         sx.pack(side="bottom", fill="x")
@@ -329,7 +324,7 @@ class PDFEditorApp(tk.Tk):
             thumbs = []
 
             for i in range(n):
-                thumb = render_thumb(path, i)   # 36 dpi — rápido
+                thumb = render_thumbnail(path, i)   # 36 dpi — rápido
                 self.pages.append({
                     "original_index": i,
                     "rotation": 0,
@@ -644,7 +639,7 @@ class PDFEditorApp(tk.Tk):
             n = len(doc)
             new_pages = []
             for i in range(n):
-                thumb = render_thumb(path, i)
+                thumb = render_thumbnail(path, i)
                 new_pages.append({
                     "original_index": i,
                     "rotation": 0,

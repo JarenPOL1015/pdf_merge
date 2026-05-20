@@ -1,6 +1,4 @@
-##CONSTANTS
-APP_TITLE = "PDF Editor Local  🔒  100% Privado"
-DEFAULT_GEOMETRY = "1400x820"
+
 ##COLORS
 BG_DARK    = "#1a1a2e"
 BG_CARD    = "#16213e"
@@ -15,3 +13,19 @@ THUMB_SEL  = "#e94560"
 BORDER     = "#2d3748"
 PREVIEW_BG = "#12192b"
 
+
+
+##CONSTANTS
+APP_TITLE = "PDF Editor Local  🔒  100% Privado"
+DEFAULT_GEOMETRY = "1400x820"
+
+MAIN_FONT = "Segoe UI"
+
+
+DEFAULT_LABEL_TXT_SZ = 9
+##COMPOSED STYLES
+DEFAULT_LABEL_STYLE={
+    "font": (MAIN_FONT, DEFAULT_LABEL_TXT_SZ),
+    "bg": BG_PANEL, 
+    "fg": TEXT_WHITE
+}

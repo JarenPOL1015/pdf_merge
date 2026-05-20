@@ -2,7 +2,7 @@
 """
 PDF Editor Local v3 - Edita documentos pdf localmente, 100% privado y gratis
 """
-from src.gui.app import PDFEditorApp
+from ui.gui import PDFEditorApp
 
 
 
