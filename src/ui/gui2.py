@@ -28,7 +28,7 @@ class PDFEditorBootstrapApp(ttk.Window):
         self.preview_cancel = threading.Event()
 
         self.protocol("WM_DELETE_WINDOW", self._on_close)
-        ttk.Style("superhero")
+        ttk.Style("cyborg")
         self._build_ui()
         self._bind_keys()
         
