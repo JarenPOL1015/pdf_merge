@@ -60,3 +60,17 @@ El archivo original **nunca se modifica** — siempre guardas una copia nueva.
 
     Miembro del Club de Inteligencia Artificial Politécnico CIAP
 <img alt="Logo_CIAP" src="img/ciap.png" />
+
+
+## Para contribuciones desde un fork
+
+1. Para agregar el repositorio original
+git remote add upstream https://github.com/JarenPOL1015/pdf_merge.git
+
+2. Halar cambios del original (antes de hacer pull)
+git fetch upstream
+git checkout main
+git merge upstream/main
+git pull origin main
+
+3. Luego de halar cambios hacer commit y push normalmente y crear pull request desde github (relacionado a algún issue)
